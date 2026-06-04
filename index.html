@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEO MED CARDIO — 24/7 Tibbiyot Markazi, Toshkent</title>
+<meta name="description" content="NEO MED CARDIO — Toshkentdagi 24/7 tibbiyot markazi. MRT, MSKT, EKG, rentgen, laboratoriya, statsionar. Onlayn qabulga yozilish. Chilonzor tumani, Arnasay ko'chasi 71.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c2233;
+  --ink-soft:#3c5468;
+  --bg:#f6f3ec;
+  --card:#ffffff;
+  --teal:#0e6e6b;
+  --teal-deep:#0a4f4d;
+  --mint:#2fd6b5;
+  --coral:#e4543f;
+  --coral-soft:#fbe9e5;
+  --gold:#c8973c;
+  --line:#e3ddd0;
+  --radius:18px;
+  --shadow:0 18px 50px -18px rgba(12,34,51,.18);
+}
+html.dark{
+  --ink:#e8f1f5;
+  --ink-soft:#9fb6c4;
+  --bg:#0b1822;
+  --card:#11222e;
+  --coral-soft:rgba(228,84,63,.16);
+  --line:#1f3442;
+  --shadow:0 18px 50px -18px rgba(0,0,0,.6);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  transition:background .35s,color .35s;
+}
+h1,h2,h3,.serif{font-family:'Fraunces',serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+button{font-family:inherit}
+
+/* ====== TOP BAR ====== */
+.topbar{background:#0c2233;color:#dfe9f0;font-size:13.5px;padding:8px 0}
+html.dark .topbar{background:#06121a}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar .pulse{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#7be0d3}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mint);animation:blink 1.6s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ====== NAV ====== */
+nav{
+  position:sticky;top:0;z-index:90;
+  background:color-mix(in srgb,var(--bg) 86%,transparent);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:74px;gap:14px}
+.logo{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}
+.logo-mark{
+  width:44px;height:44px;border-radius:12px;flex:none;
+  background:linear-gradient(135deg,var(--teal),var(--teal-deep));
+  display:grid;place-items:center;color:#fff;
+  box-shadow:0 8px 18px -6px rgba(14,110,107,.5);
+}
+.logo small{display:block;font-weight:600;font-size:10.5px;color:var(--ink-soft);letter-spacing:.18em}
+.nav-links{display:flex;gap:26px;font-weight:600;font-size:15px}
+.nav-links a{position:relative;padding:4px 0;color:var(--ink-soft);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--teal)}
+html.dark .nav-links a:hover,html.dark .nav-links a.active{color:var(--mint)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--coral);transition:width .25s}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:13px 26px;border-radius:999px;font-weight:700;font-size:15px;
+  border:none;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;
+}
+.btn-coral{background:var(--coral);color:#fff;box-shadow:0 12px 26px -8px rgba(228,84,63,.55)}
+.btn-coral:hover{transform:translateY(-2px);box-shadow:0 16px 32px -8px rgba(228,84,63,.6)}
+.btn-ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--bg)}
+.icon-btn{
+  width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);
+  background:var(--card);color:var(--ink);display:grid;place-items:center;cursor:pointer;
+  transition:transform .2s,border-color .2s;
+}
+.icon-btn:hover{transform:translateY(-2px);border-color:var(--teal)}
+.burger{display:none}
+
+/* mobile menu */
+.m-menu{
+  position:fixed;inset:0;z-index:200;background:color-mix(in srgb,var(--bg) 96%,transparent);
+  backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.m-menu.open{opacity:1;pointer-events:auto}
+.m-menu a{font-family:'Fraunces',serif;font-size:30px;font-weight:600;padding:10px;opacity:0;transform:translateY(14px);transition:.4s}
+.m-menu.open a{opacity:1;transform:none}
+.m-menu .close{position:absolute;top:24px;right:24px}
+
+/* ====== HERO ====== */
+.hero{position:relative;overflow:hidden;padding:84px 0 110px}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(620px 420px at 85% 12%, rgba(14,110,107,.12), transparent 60%),
+    radial-gradient(520px 380px at 6% 88%, rgba(228,84,63,.09), transparent 60%);
+}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--coral-soft);color:var(--coral);
+  font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  padding:8px 16px;border-radius:999px;margin-bottom:22px;
+}
+.hero h1{font-size:clamp(38px,5vw,60px);line-height:1.08;font-weight:600;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--teal)}
+html.dark .hero h1 em{color:var(--mint)}
+.hero p.lead{margin:22px 0 34px;font-size:18px;color:var(--ink-soft);max-width:520px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:38px;margin-top:46px;flex-wrap:wrap}
+.stat b{font-family:'Fraunces',serif;font-size:34px;font-weight:600;color:var(--teal-deep)}
+html.dark .stat b{color:var(--mint)}
+.stat span{display:block;font-size:13.5px;color:var(--ink-soft);font-weight:600}
+
+.hero-card{
+  background:#0c2233;color:#eaf4f3;border-radius:26px;padding:38px 34px;
+  box-shadow:0 40px 80px -30px rgba(12,34,51,.5);
+  position:relative;overflow:hidden;
+}
+.hero-card::after{
+  content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+  border-radius:50%;background:radial-gradient(circle,rgba(47,214,181,.25),transparent 70%);
+}
+.hero-card h3{font-size:22px;font-weight:600;margin-bottom:6px}
+.hero-card .sub{color:#9db8c4;font-size:14px;margin-bottom:24px}
+.ecg{width:100%;height:90px;margin-bottom:24px}
+.ecg path{
+  fill:none;stroke:var(--mint);stroke-width:2.5;stroke-linecap:round;
+  stroke-dasharray:900;stroke-dashoffset:900;
+  animation:draw 3.2s linear infinite;
+  filter:drop-shadow(0 0 6px rgba(47,214,181,.7));
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero-card ul{list-style:none;display:grid;gap:12px;font-size:14.5px}
+.hero-card li{display:flex;gap:10px;align-items:center;color:#cfe3e1}
+.hero-card li svg{flex:none}
+
+/* marquee */
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:16px 0;background:var(--card)}
+.marquee-track{display:flex;gap:50px;white-space:nowrap;animation:scrollx 28s linear infinite;width:max-content}
+.marquee span{font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:inline-flex;align-items:center;gap:14px}
+.marquee b{color:var(--coral)}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* ====== SECTIONS ====== */
+section{padding:90px 0}
+.sec-head{max-width:640px;margin-bottom:54px}
+.sec-head .tag{color:var(--coral);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
+.sec-head h2{font-size:clamp(30px,3.6vw,42px);font-weight:600;margin-top:10px;line-height:1.15}
+.sec-head p{margin-top:14px;color:var(--ink-soft);font-size:16.5px}
+
+/* services + filter */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
+.chip{
+  padding:9px 20px;border-radius:999px;border:1.5px solid var(--line);
+  background:var(--card);color:var(--ink-soft);font-weight:700;font-size:14px;cursor:pointer;
+  transition:.2s;
+}
+.chip.active,.chip:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.svc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:30px 26px;transition:transform .25s,box-shadow .25s,opacity .3s;
+  position:relative;overflow:hidden;
+}
+.svc.hide{display:none}
+.svc:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.svc .ico{
+  width:52px;height:52px;border-radius:14px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#eaf5f4,#d8ecea);color:var(--teal);margin-bottom:18px;
+}
+html.dark .svc .ico{background:rgba(47,214,181,.12);color:var(--mint)}
+.svc h3{font-size:19px;font-weight:600;margin-bottom:8px}
+.svc p{font-size:14.5px;color:var(--ink-soft)}
+.svc .badge247{
+  position:absolute;top:18px;right:18px;font-size:11px;font-weight:800;
+  background:var(--coral-soft);color:var(--coral);padding:4px 10px;border-radius:999px;letter-spacing:.08em;
+}
+.svc .price{margin-top:14px;font-weight:800;color:var(--teal);font-size:14px}
+html.dark .svc .price{color:var(--mint)}
+
+/* why us band */
+.band{background:var(--teal-deep);color:#e8f4f3;border-radius:34px;margin:0 18px}
+.band .wrap{padding:84px 24px}
+.band .sec-head .tag{color:#7be0d3}
+.band .sec-head h2{color:#fff}
+.band .sec-head p{color:#bcd9d6}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.why{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:28px 24px}
+.why b{display:block;font-family:'Fraunces',serif;font-size:21px;font-weight:600;margin:14px 0 8px;color:#fff}
+.why p{font-size:14px;color:#b9d6d3}
+.why .num{font-family:'Fraunces',serif;font-size:15px;color:var(--gold);font-weight:600;letter-spacing:.1em}
+
+/* departments */
+.dept-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.dept{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 22px;text-align:center;transition:transform .25s,box-shadow .25s;cursor:pointer;
+}
+.dept:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.dept .circ{width:64px;height:64px;border-radius:50%;margin:0 auto 16px;background:var(--coral-soft);display:grid;place-items:center;color:var(--coral)}
+.dept h3{font-size:17px;font-weight:600;margin-bottom:6px}
+.dept p{font-size:13.5px;color:var(--ink-soft)}
+
+/* ====== BOOKING ====== */
+.book-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;align-items:center}
+.book-info h2{font-size:clamp(28px,3.4vw,40px);font-weight:600;line-height:1.15;margin-top:10px}
+.book-info p{margin-top:14px;color:var(--ink-soft)}
+.book-steps{margin-top:30px;display:grid;gap:18px}
+.bstep{display:flex;gap:16px;align-items:flex-start}
+.bstep .n{
+  width:38px;height:38px;flex:none;border-radius:50%;background:var(--teal);color:#fff;
+  display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:600;
+}
+.bstep b{display:block;font-size:15.5px}
+.bstep span{font-size:14px;color:var(--ink-soft)}
+.book-card{
+  background:var(--card);border:1px solid var(--line);border-radius:26px;padding:40px 36px;
+  box-shadow:var(--shadow);
+}
+.book-card h3{font-size:22px;font-weight:600;margin-bottom:24px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:13.5px;font-weight:700;margin-bottom:7px;color:var(--ink-soft)}
+.field input,.field select{
+  width:100%;padding:14px 16px;border-radius:13px;border:1.5px solid var(--line);
+  background:var(--bg);color:var(--ink);font-family:inherit;font-size:15px;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.field input:focus,.field select:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(14,110,107,.12)}
+.field .err{display:none;color:var(--coral);font-size:12.5px;font-weight:600;margin-top:5px}
+.field.invalid input,.field.invalid select{border-color:var(--coral)}
+.field.invalid .err{display:block}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.book-ok{
+  display:none;text-align:center;padding:30px 10px;
+}
+.book-ok .big{
+  width:74px;height:74px;border-radius:50%;background:var(--mint);margin:0 auto 18px;
+  display:grid;place-items:center;animation:pop .5s cubic-bezier(.2,1.6,.4,1);
+}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+.book-ok h3{margin-bottom:8px}
+.book-ok p{color:var(--ink-soft);font-size:15px;margin-bottom:22px}
+
+/* testimonials */
+.t-slider{position:relative;overflow:hidden}
+.t-track{display:flex;transition:transform .55s cubic-bezier(.5,0,.2,1)}
+.t-card{
+  flex:0 0 calc(50% - 11px);margin-right:22px;
+  background:var(--card);border:1px solid var(--line);border-radius:22px;padding:34px 30px;
+}
+.t-card .stars{color:var(--gold);letter-spacing:3px;font-size:16px;margin-bottom:14px}
+.t-card p{font-size:15.5px;font-style:italic;color:var(--ink-soft)}
+.t-card .who{display:flex;align-items:center;gap:14px;margin-top:22px}
+.t-card .av{
+  width:48px;height:48px;border-radius:50%;font-weight:800;color:#fff;
+  display:grid;place-items:center;font-size:17px;
+}
+.t-card .who b{display:block;font-size:15px}
+.t-card .who span{font-size:13px;color:var(--ink-soft)}
+.t-nav{display:flex;gap:12px;margin-top:28px}
+
+/* FAQ */
+.faq{max-width:780px}
+.q{border:1px solid var(--line);border-radius:16px;background:var(--card);margin-bottom:14px;overflow:hidden}
+.q button{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:22px 26px;background:none;border:none;cursor:pointer;text-align:left;
+  font-weight:700;font-size:16.5px;color:var(--ink);
+}
+.q .pl{flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;transition:transform .3s,background .3s;font-size:18px;line-height:1}
+.q .a{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 26px;color:var(--ink-soft);font-size:15px}
+.q.open .a{padding-bottom:22px}
+.q.open .pl{transform:rotate(45deg);background:var(--coral);border-color:var(--coral);color:#fff}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:stretch}
+.c-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px 36px;box-shadow:var(--shadow)}
+.c-row{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px dashed var(--line)}
+.c-row:last-child{border-bottom:none}
+.c-row .ico{width:44px;height:44px;flex:none;border-radius:12px;background:#eaf5f4;color:var(--teal);display:grid;place-items:center}
+html.dark .c-row .ico{background:rgba(47,214,181,.12);color:var(--mint)}
+.c-row b{display:block;font-size:15.5px;margin-bottom:2px}
+.c-row span{font-size:14.5px;color:var(--ink-soft)}
+.map-box{border-radius:24px;overflow:hidden;border:1px solid var(--line);min-height:440px;box-shadow:var(--shadow)}
+.map-box iframe{width:100%;height:100%;min-height:440px;border:0;display:block;filter:saturate(.92)}
+html.dark .map-box iframe{filter:invert(.9) hue-rotate(180deg) saturate(.8)}
+
+/* CTA strip */
+.cta-strip{
+  background:linear-gradient(120deg,var(--coral),#c93f2c);
+  border-radius:28px;color:#fff;padding:54px 50px;
+  display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;
+}
+.cta-strip h2{font-size:clamp(26px,3vw,36px);font-weight:600;line-height:1.2}
+.cta-strip p{margin-top:8px;color:#ffe2db;font-size:16px}
+.btn-white{background:#fff;color:var(--coral)}
+.btn-white:hover{transform:translateY(-2px)}
+
+/* footer */
+footer{background:#0c2233;color:#9fb6c4;padding:60px 0 30px;margin-top:90px}
+html.dark footer{background:#06121a}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+footer h4{color:#fff;font-size:15px;font-weight:700;margin-bottom:16px;letter-spacing:.04em}
+footer a{display:block;font-size:14.5px;padding:5px 0;transition:color .2s}
+footer a:hover{color:#7be0d3}
+.f-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;font-size:13px}
+
+/* floating buttons */
+.fab-wrap{position:fixed;right:22px;bottom:22px;z-index:80;display:flex;flex-direction:column;gap:12px;align-items:flex-end}
+.fab{
+  width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;
+  box-shadow:0 14px 30px -8px rgba(0,0,0,.35);transition:transform .2s;cursor:pointer;border:none;
+}
+.fab:hover{transform:translateY(-3px) scale(1.04)}
+.fab-call{background:var(--coral);animation:ring 3s infinite}
+@keyframes ring{0%,86%,100%{transform:rotate(0)}88%{transform:rotate(-12deg)}90%{transform:rotate(10deg)}92%{transform:rotate(-8deg)}94%{transform:rotate(6deg)}96%{transform:rotate(-3deg)}}
+.fab-tg{background:#2aabee}
+.fab-top{background:var(--ink);color:var(--bg);opacity:0;pointer-events:none;transition:opacity .3s,transform .2s}
+.fab-top.show{opacity:1;pointer-events:auto}
+
+/* toast */
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,80px);z-index:300;
+  background:var(--ink);color:var(--bg);padding:14px 26px;border-radius:999px;font-weight:700;font-size:14.5px;
+  transition:transform .4s cubic-bezier(.2,1.4,.4,1);box-shadow:0 18px 40px -10px rgba(0,0,0,.4);
+}
+.toast.show{transform:translate(-50%,0)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:960px){
+  .hero .wrap,.book-grid{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .why-grid,.dept-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .burger{display:grid}
+  .t-card{flex:0 0 100%}
+  .nav-cta-txt{display:none}
+}
+@media(max-width:560px){
+  .svc-grid,.why-grid,.dept-grid,.f-grid,.f-row{grid-template-columns:1fr}
+  section{padding:64px 0}
+  .topbar .addr{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wrap">
+    <span class="pulse"><span class="dot"></span> <span id="openNow">Hozir ochiq</span> — 24/7 ishlaymiz</span>
+    <span class="addr">📍 Chilonzor t., Arnasay ko'chasi, 71 &nbsp;·&nbsp; ☎ +998 (99) 307-XX-XX</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="#top">
+      <span class="logo-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 5 6.4 5c2 0 3.4 1 4.3 2.4l1.3 2 2-3.4c.9-1.4 2.3-2.4 4.3-2.4 3.3 0 5.4 3.4 4 6.8C19.5 16.4 12 21 12 21z" fill="#fff" opacity=".9"/><path d="M4 12h4l1.5-3 3 6 1.5-3h6" stroke="#0a4f4d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>NEO MED CARDIO<small>TIBBIYOT MARKAZI · TOSHKENT</small></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#xizmatlar">Xizmatlar</a>
+      <a href="#nega-biz">Nega biz</a>
+      <a href="#bolimlar">Bo'limlar</a>
+      <a href="#yozilish">Qabulga yozilish</a>
+      <a href="#aloqa">Aloqa</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" title="Tungi rejim" aria-label="Tungi rejim">
+        <svg id="moonIco" width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <svg id="sunIco" style="display:none" width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <a class="btn btn-coral" href="#yozilish"><span class="nav-cta-txt">Qabulga yozilish</span><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M8 2v3M16 2v3M3.5 9h17M5 4.5h14A1.5 1.5 0 0 1 20.5 6v13A1.5 1.5 0 0 1 19 20.5H5A1.5 1.5 0 0 1 3.5 19V6A1.5 1.5 0 0 1 5 4.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+      <button class="icon-btn burger" id="burger" aria-label="Menyu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="m-menu" id="mMenu">
+  <button class="icon-btn close" id="mClose" aria-label="Yopish">✕</button>
+  <a href="#xizmatlar">Xizmatlar</a>
+  <a href="#nega-biz">Nega biz</a>
+  <a href="#bolimlar">Bo'limlar</a>
+  <a href="#yozilish">Qabulga yozilish</a>
+  <a href="#aloqa">Aloqa</a>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">❤ Yuragingiz ishonchli qo'llarda</span>
+      <h1>Sog'lig'ingiz uchun <em>kechayu kunduz</em> xizmatdamiz</h1>
+      <p class="lead">NEO MED CARDIO — Toshkentdagi zamonaviy tibbiyot markazi. MRT, MSKT, EKG va laboratoriya tekshiruvlaridan tortib statsionar davolashgacha — barchasi bir joyda, sutkasiga 24 soat.</p>
+      <div class="hero-cta">
+        <a class="btn btn-coral" href="#yozilish">Onlayn qabulga yozilish</a>
+        <a class="btn btn-ghost" href="#xizmatlar">Xizmatlar bilan tanishish</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b><span class="cnt" data-to="24">0</span>/7</b><span>Uzluksiz ish rejimi</span></div>
+        <div class="stat"><b><span class="cnt" data-to="15">0</span>+</b><span>Yo'nalishdagi xizmatlar</span></div>
+        <div class="stat"><b><span class="cnt" data-to="6">0</span> yil</b><span>Bemorlar ishonchi</span></div>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <h3>Shoshilinch yordam kerakmi?</h3>
+      <p class="sub">Diagnostika bo'limi tunda ham ishlaydi</p>
+      <svg class="ecg" viewBox="0 0 400 90" preserveAspectRatio="none">
+        <path d="M0,50 L60,50 L75,50 L85,30 L95,70 L105,15 L115,80 L125,50 L150,50 L210,50 L225,50 L235,30 L245,70 L255,15 L265,80 L275,50 L300,50 L400,50"/>
+      </svg>
+      <ul>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2fd6b5"/><path d="m8 12 3 3 5-6" stroke="#0a4f4d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Pullik tez tibbiy yordam (ambulans)</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2fd6b5"/><path d="m8 12 3 3 5-6" stroke="#0a4f4d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> 24 soatlik laboratoriya tahlillari</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2fd6b5"/><path d="m8 12 3 3 5-6" stroke="#0a4f4d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Sutka davomida MRT va MSKT</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2fd6b5"/><path d="m8 12 3 3 5-6" stroke="#0a4f4d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Statsionar — yotib davolanish</li>
+      </ul>
+    </aside>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track" id="mq">
+    <span><b>✦</b> MRT 24/7</span><span><b>✦</b> MSKT</span><span><b>✦</b> EKG</span><span><b>✦</b> Rentgen</span><span><b>✦</b> Laboratoriya 24/7</span><span><b>✦</b> Tez yordam</span><span><b>✦</b> Statsionar</span><span><b>✦</b> Pediatriya 24/7</span><span><b>✦</b> Ginekologiya</span><span><b>✦</b> Urologiya</span><span><b>✦</b> Travmatologiya</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="xizmatlar">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Xizmatlarimiz</span>
+      <h2>Zamonaviy diagnostika va davolash — bir manzilda</h2>
+      <p>Eng so'nggi avlod uskunalarida aniq tashxis va tajribali shifokorlar nazoratida davolash.</p>
+    </div>
+    <div class="filters reveal">
+      <button class="chip active" data-f="all">Barchasi</button>
+      <button class="chip" data-f="diag">Diagnostika</button>
+      <button class="chip" data-f="lab">Laboratoriya</button>
+      <button class="chip" data-f="emerg">Shoshilinch</button>
+    </div>
+    <div class="svc-grid" id="svcGrid">
+      <div class="svc reveal" data-cat="diag"><span class="badge247">24/7</span>
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12.5" r="3.6" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12.5" r="1.2" fill="currentColor"/></svg></div>
+        <h3>MRT — magnit-rezonans tomografiya</h3>
+        <p>Bosh miya, umurtqa, bo'g'imlar va ichki a'zolarning yuqori aniqlikdagi tasviri.</p>
+        <div class="price">Narxi: kelishilgan holda →</div>
+      </div>
+      <div class="svc reveal" data-cat="diag"><span class="badge247">24/7</span>
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>MSKT — ko'p kesimli tomografiya</h3>
+        <p>Ko'krak qafasi va boshqa a'zolarning multispiral kompyuter tomografiyasi — tez va og'riqsiz.</p>
+        <div class="price">Narxi: kelishilgan holda →</div>
+      </div>
+      <div class="svc reveal" data-cat="diag">
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2-5 4 10 2-5h6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>EKG — elektrokardiografiya</h3>
+        <p>Yurak faoliyatini tekshirish va kardiolog maslahati. Yurak salomatligi — asosiy yo'nalishimiz.</p>
+        <div class="price">Narxi: kelishilgan holda →</div>
+      </div>
+      <div class="svc reveal" data-cat="diag">
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Rentgen va radiografiya</h3>
+        <p>Ko'krak qafasi rentgeni va boshqa radiografiya xizmatlari zamonaviy raqamli uskunalarda.</p>
+        <div class="price">Narxi: kelishilgan holda →</div>
+      </div>
+      <div class="svc reveal" data-cat="lab"><span class="badge247">24/7</span>
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M9 3h6M10 3v5.2L4.8 17a3 3 0 0 0 2.6 4.5h9.2a3 3 0 0 0 2.6-4.5L14 8.2V3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 15h10" stroke="currentColor" stroke-width="1.8"/></svg></div>
+        <h3>Tibbiy laboratoriya</h3>
+        <p>Barcha turdagi tahlillar — qon, gormonlar, biokimyo. Natijalar tez va ishonchli.</p>
+        <div class="price">Narxi: kelishilgan holda →</div>
+      </div>
+      <div class="svc reveal" data-cat="emerg"><span class="badge247">24/7</span>
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 16V8a2 2 0 0 1 2-2h8v10H3zM13 9h4l4 3v4h-8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18.5" r="1.8" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="18.5" r="1.8" stroke="currentColor" stroke-width="1.8"/></svg></div>
+        <h3>Pullik tez yordam</h3>
+        <p>Shaxsiy ambulans xizmati — chaqiruv bo'yicha tezkor yetib borish va malakali birinchi yordam.</p>
+        <div class="price">Narxi: kelishilgan holda →</div>
+      </div>
+      <div class="svc reveal" data-cat="emerg"><span class="badge247">24/7</span>
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 10.5v6M9 13.5h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.8"/></svg></div>
+        <h3>Statsionar davolash</h3>
+        <p>Qulay palatalarda yotib davolanish, doimiy hamshira va shifokor nazorati ostida.</p>
+        <div class="price">Narxi: kelishilgan holda →</div>
+      </div>
+      <div class="svc reveal" data-cat="lab">
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.8-3.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>To'liq tibbiy ko'rik (check-up)</h3>
+        <p>Bir kunda butun organizm tekshiruvi: tahlillar, EKG, UTT va shifokor xulosasi.</p>
+        <div class="price">Narxi: kelishilgan holda →</div>
+      </div>
+      <div class="svc reveal" data-cat="diag">
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7" r="3.5" stroke="currentColor" stroke-width="1.8"/><path d="M5 21c.6-4 3.4-6.5 7-6.5s6.4 2.5 7 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Shifokor qabuli va maslahat</h3>
+        <p>Terapevt, kardiolog, ginekolog, pediatr, urolog va travmatolog qabullari.</p>
+        <div class="price">Narxi: kelishilgan holda →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<div class="band" id="nega-biz">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Nega aynan biz?</span>
+      <h2>Bemorlar bizni shuning uchun tanlaydi</h2>
+      <p>Oddiy poliklinika emas — to'liq tsikldagi zamonaviy tibbiyot markazi.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why reveal"><span class="num">01</span><b>Sutkasiga 24 soat</b><p>Dam olish kunlari ham, tunda ham — eshigimiz doim ochiq, navbatchi shifokorlar joyida.</p></div>
+      <div class="why reveal"><span class="num">02</span><b>To'liq diagnostika</b><p>MRT, MSKT, EKG, rentgen va laboratoriya — boshqa joyga yugurish shart emas.</p></div>
+      <div class="why reveal"><span class="num">03</span><b>Statsionar davolash</b><p>Qulay palatalarda yotib davolanish va doimiy tibbiy nazorat imkoniyati.</p></div>
+      <div class="why reveal"><span class="num">04</span><b>Qulay joylashuv</b><p>Chilonzor tumani markazida, Dombrabod yo'nalishida — yetib kelish oson.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- DEPARTMENTS -->
+<section id="bolimlar">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Bo'limlar va mutaxassislar</span>
+      <h2>Har bir yo'nalishda tajribali shifokorlar</h2>
+      <p>Bo'limni tanlang — qabulga yozilish formasida avtomatik belgilanadi.</p>
+    </div>
+    <div class="dept-grid">
+      <div class="dept reveal" data-svc="Kardiologiya">
+        <div class="circ"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 5 6.4 5c2 0 3.4 1 4.3 2.4L12 9.7l1.3-2.3C14.2 6 15.6 5 17.6 5c3.3 0 5.4 3.4 4 6.8C19.5 16.4 12 21 12 21z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Kardiologiya</h3><p>Yurak-qon tomir kasalliklari tashxisi va davosi</p>
+      </div>
+      <div class="dept reveal" data-svc="Ginekologiya">
+        <div class="circ"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7" r="3.5" stroke="currentColor" stroke-width="1.8"/><path d="M5 21c.6-4 3.4-6.5 7-6.5s6.4 2.5 7 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Ginekologiya</h3><p>Ayollar salomatligi bo'yicha maslahat va davolash</p>
+      </div>
+      <div class="dept reveal" data-svc="Pediatriya">
+        <div class="circ"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="2.6" stroke="currentColor" stroke-width="1.8"/><circle cx="16" cy="11" r="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c.4-3.2 2.4-5.2 5-5.2s4.6 2 5 5.2M13.5 15.6c1.9.4 3.2 1.9 3.5 4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Pediatriya 24/7</h3><p>Bolalar shifokori kecha-kunduz xizmatda</p>
+      </div>
+      <div class="dept reveal" data-svc="Terapiya">
+        <div class="circ"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M7 4v6a5 5 0 0 0 10 0V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="17" cy="18" r="2.6" stroke="currentColor" stroke-width="1.8"/><path d="M12 15v1a2 2 0 0 0 2 2h.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Terapiya</h3><p>Shifokor maslahati, tashxis va davolash</p>
+      </div>
+      <div class="dept reveal" data-svc="Urologiya">
+        <div class="circ"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 3l2 4.5L19 9l-4 3.5L16 18l-4-2.5L8 18l1-5.5L5 9l5-1.5L12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <h3>Urologiya</h3><p>Buyrak va siydik yo'llari kasalliklari mutaxassisi</p>
+      </div>
+      <div class="dept reveal" data-svc="Travmatologiya">
+        <div class="circ"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M8 4h8v4a4 4 0 0 1-8 0V4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 12v8M8 20h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Travmatologiya</h3><p>Jarohatlar va suyak-bo'g'im muammolari davosi</p>
+      </div>
+      <div class="dept reveal" data-svc="Statsionar">
+        <div class="circ"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 10.5v6M9 13.5h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.8"/></svg></div>
+        <h3>Statsionar</h3><p>Yotib davolanish uchun qulay palatalar</p>
+      </div>
+      <div class="dept reveal" data-svc="Diagnostika">
+        <div class="circ"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.8-3.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Diagnostika</h3><p>To'liq tibbiy tekshiruv dasturlari</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="yozilish" style="padding-top:30px">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="book-info reveal">
+        <span class="tag" style="color:var(--coral);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase">Onlayn yozilish</span>
+        <h2>Navbatsiz qabulga yoziling</h2>
+        <p>Formani to'ldiring — operatorimiz 10 daqiqa ichida qo'ng'iroq qilib, qulay vaqtni kelishib oladi.</p>
+        <div class="book-steps">
+          <div class="bstep"><span class="n">1</span><div><b>Formani to'ldiring</b><span>Ism, telefon va kerakli xizmatni tanlang</span></div></div>
+          <div class="bstep"><span class="n">2</span><div><b>Qo'ng'iroqni kuting</b><span>Operator vaqtni siz bilan kelishib oladi</span></div></div>
+          <div class="bstep"><span class="n">3</span><div><b>Qabulga keling</b><span>Navbatsiz, belgilangan vaqtda shifokor kutadi</span></div></div>
+        </div>
+      </div>
+      <div class="book-card reveal">
+        <form id="bookForm" novalidate>
+          <h3>Qabulga yozilish</h3>
+          <div class="field" id="fName">
+            <label for="iName">Ismingiz *</label>
+            <input id="iName" type="text" placeholder="Masalan: Aziz Karimov" autocomplete="name">
+            <span class="err">Iltimos, ismingizni kiriting</span>
+          </div>
+          <div class="field" id="fPhone">
+            <label for="iPhone">Telefon raqamingiz *</label>
+            <input id="iPhone" type="tel" placeholder="+998 90 123 45 67" autocomplete="tel">
+            <span class="err">To'g'ri telefon raqam kiriting (masalan: +998 90 123 45 67)</span>
+          </div>
+          <div class="f-row">
+            <div class="field" id="fSvc">
+              <label for="iSvc">Xizmat turi *</label>
+              <select id="iSvc">
+                <option value="">Tanlang...</option>
+                <option>Kardiologiya</option>
+                <option>MRT</option>
+                <option>MSKT</option>
+                <option>EKG</option>
+                <option>Rentgen</option>
+                <option>Laboratoriya tahlillari</option>
+                <option>Ginekologiya</option>
+                <option>Pediatriya</option>
+                <option>Urologiya</option>
+                <option>Travmatologiya</option>
+                <option>Terapiya</option>
+                <option>Statsionar</option>
+                <option>Diagnostika</option>
+                <option>Tez yordam chaqirish</option>
+              </select>
+              <span class="err">Xizmatni tanlang</span>
+            </div>
+            <div class="field">
+              <label for="iDate">Qulay sana</label>
+              <input id="iDate" type="date">
+            </div>
+          </div>
+          <button class="btn btn-coral" type="submit" style="width:100%;margin-top:6px">Yuborish →</button>
+          <p style="font-size:12.5px;color:var(--ink-soft);margin-top:14px;text-align:center">Yuborish orqali shaxsiy ma'lumotlarni qayta ishlashga rozilik bildirasiz</p>
+        </form>
+        <div class="book-ok" id="bookOk">
+          <div class="big"><svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="#0a4f4d" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Arizangiz qabul qilindi!</h3>
+          <p id="okMsg">Tez orada operatorimiz siz bilan bog'lanadi.</p>
+          <a class="btn btn-ghost" id="okTg" target="_blank" rel="noopener">Telegram orqali ham yuborish</a>
+          <button class="btn btn-coral" id="okAgain" type="button" style="margin-left:10px">Yana yozilish</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Fikrlar</span>
+      <h2>Bemorlarimiz nima deydi</h2>
+    </div>
+    <div class="t-slider reveal">
+      <div class="t-track" id="tTrack">
+        <div class="t-card">
+          <div class="stars">★★★★★</div>
+          <p>"Tunda farzandim isitmalab qoldi — boshqa hamma joy yopiq edi. Bu yerda pediatr darhol qabul qildi, tahlillar ham shu yerning o'zida. Juda minnatdorman!"</p>
+          <div class="who"><span class="av" style="background:#0e6e6b">D</span><div><b>Dilnoza M.</b><span>Pediatriya bo'limi bemori</span></div></div>
+        </div>
+        <div class="t-card">
+          <div class="stars">★★★★★</div>
+          <p>"MRT uchun boshqa markazlarda bir haftaga navbat berishdi. Bu yerda kechqurun kelib, o'sha kuniyoq tekshiruvdan o'tdim. Natija ham tez tayyor bo'ldi."</p>
+          <div class="who"><span class="av" style="background:#e4543f">B</span><div><b>Bekzod T.</b><span>MRT diagnostikasi</span></div></div>
+        </div>
+        <div class="t-card">
+          <div class="stars">★★★★☆</div>
+          <p>"Otamni statsionarga yotqizdik. Palatalar toza, hamshiralar e'tiborli, shifokor har kuni ko'rikdan o'tkazdi. Xizmatdan mamnunmiz."</p>
+          <div class="who"><span class="av" style="background:#c8973c">N</span><div><b>Nigora S.</b><span>Statsionar davolash</span></div></div>
+        </div>
+        <div class="t-card">
+          <div class="stars">★★★★★</div>
+          <p>"Yurak sohasida og'riq bilan keldim. EKG, tahlillar va kardiolog maslahati — hammasi bir soat ichida. Mutaxassislar o'z ishining ustasi ekan."</p>
+          <div class="who"><span class="av" style="background:#3c5468">A</span><div><b>Akmal R.</b><span>Kardiologiya bemori</span></div></div>
+        </div>
+      </div>
+      <div class="t-nav">
+        <button class="icon-btn" id="tPrev" aria-label="Oldingi">←</button>
+        <button class="icon-btn" id="tNext" aria-label="Keyingi">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding-top:10px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Savol-javob</span>
+      <h2>Ko'p beriladigan savollar</h2>
+    </div>
+    <div class="faq">
+      <div class="q reveal">
+        <button>Markaz rostdan ham 24 soat ishlaydimi?<span class="pl">+</span></button>
+        <div class="a">Ha, biz haftada 7 kun, sutkasiga 24 soat tanaffussiz ishlaymiz. Tunda ham navbatchi shifokorlar, laboratoriya va diagnostika bo'limi (MRT, MSKT) xizmat ko'rsatadi.</div>
+      </div>
+      <div class="q reveal">
+        <button>Qabulga oldindan yozilish shartmi?<span class="pl">+</span></button>
+        <div class="a">Shart emas — istalgan vaqtda kelishingiz mumkin. Lekin onlayn yozilsangiz, navbatsiz, aynan siz tanlagan vaqtda qabul qilamiz va vaqtingizni tejaysiz.</div>
+      </div>
+      <div class="q reveal">
+        <button>Tahlil natijalari qancha vaqtda tayyor bo'ladi?<span class="pl">+</span></button>
+        <div class="a">Ko'pchilik tahlillar bir necha soat ichida tayyor bo'ladi. Shoshilinch holatlarda ekspress rejimda bajariladi. Natijani telefon orqali ham xabar qilamiz.</div>
+      </div>
+      <div class="q reveal">
+        <button>Tez yordam xizmati qanday ishlaydi?<span class="pl">+</span></button>
+        <div class="a">Telefon orqali chaqiruv qoldirasiz — brigada manzilingizga yetib boradi, birinchi yordam ko'rsatadi va zarur bo'lsa markazimizga olib keladi. Xizmat pullik asosda ko'rsatiladi.</div>
+      </div>
+      <div class="q reveal">
+        <button>Markaz qayerda joylashgan?<span class="pl">+</span></button>
+        <div class="a">Toshkent shahri, Chilonzor tumani, Arnasay ko'chasi, 71-uy. Mo'ljal: CENTRAL KARDIO SERVIS klinikasi va Dombraboddagi "O'zbekneftegaz" yoqilg'i shahobchasi yonida.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-strip reveal">
+      <div>
+        <h2>Tashxisni ertaga qoldirmang</h2>
+        <p>Hoziroq qo'ng'iroq qiling — mutaxassislarimiz qabul vaqtini kelishib oladi.</p>
+      </div>
+      <a class="btn btn-white" href="tel:+998993070000">☎ +998 (99) 307-XX-XX</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="aloqa" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Aloqa</span>
+      <h2>Bizni topish juda oson</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="c-card reveal">
+        <div class="c-row">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" stroke-width="1.8"/></svg></div>
+          <div><b>Manzil</b><span>100115, Toshkent sh., Chilonzor tumani, Arnasay ko'chasi, 71</span></div>
+        </div>
+        <div class="c-row">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+          <div><b>Telefon</b><span>+998 (99) 307-XX-XX — 24 soat qo'ng'iroqlar qabul qilinadi</span></div>
+        </div>
+        <div class="c-row">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <div><b>Ish vaqti</b><span>Sutkasiga 24 soat, haftada 7 kun — tanaffussiz va dam olishsiz</span></div>
+        </div>
+        <div class="c-row">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 4l6 8-6 8M12 4l6 8-6 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><b>Mo'ljallar</b><span>CENTRAL KARDIO SERVIS klinikasi yonida · "O'zbekneftegaz" YOQSh — Dombrabod</span></div>
+        </div>
+      </div>
+      <div class="map-box reveal">
+        <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Neo%20med%20cardio%20Tashkent%20Chilanzar&z=15&output=embed"
+          title="NEO MED CARDIO xaritada"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a class="logo" href="#top" style="color:#fff;margin-bottom:16px">
+          <span class="logo-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 5 6.4 5c2 0 3.4 1 4.3 2.4l1.3 2 2-3.4c.9-1.4 2.3-2.4 4.3-2.4 3.3 0 5.4 3.4 4 6.8C19.5 16.4 12 21 12 21z" fill="#fff" opacity=".9"/></svg></span>
+          <span>NEO MED CARDIO<small style="color:#7e98a8">TIBBIYOT MARKAZI</small></span>
+        </a>
+        <p style="font-size:14px;max-width:300px;margin-top:14px">Toshkentdagi 24/7 ishlaydigan zamonaviy tibbiyot markazi. Sog'lig'ingiz — bizning mas'uliyatimiz.</p>
+      </div>
+      <div>
+        <h4>Xizmatlar</h4>
+        <a href="#xizmatlar">MRT va MSKT</a>
+        <a href="#xizmatlar">EKG va kardiologiya</a>
+        <a href="#xizmatlar">Laboratoriya tahlillari</a>
+        <a href="#xizmatlar">Rentgen xizmatlari</a>
+        <a href="#xizmatlar">Tez tibbiy yordam</a>
+      </div>
+      <div>
+        <h4>Aloqa</h4>
+        <a href="#aloqa">Chilonzor t., Arnasay ko'chasi, 71</a>
+        <a href="tel:+998993070000">+998 (99) 307-XX-XX</a>
+        <a href="#aloqa">24/7 — har doim ochiq</a>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 NEO MED CARDIO. Barcha huquqlar himoyalangan.</span>
+      <span>Litsenziyalangan tibbiyot muassasasi</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="fab-wrap">
+  <button class="fab fab-top" id="toTop" aria-label="Yuqoriga">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <a class="fab fab-tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21.5 4.5 2.9 11.7c-1 .4-1 1.1-.2 1.4l4.7 1.5 1.8 5.5c.2.6.5.8 1 .5l2.6-2 4.8 3.6c.9.5 1.5.2 1.7-.8l3-14.2c.3-1.2-.4-1.8-1.8-1.7z" fill="#fff"/></svg>
+  </a>
+  <a class="fab fab-call" href="tel:+998993070000" aria-label="Qo'ng'iroq">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z" fill="currentColor"/></svg>
+  </a>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== reveal on scroll ===== */
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ===== animated counters ===== */
+const cio=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,to=+el.dataset.to,t0=performance.now();
+    const step=t=>{
+      const p=Math.min((t-t0)/1200,1);
+      el.textContent=Math.round(to*(1-Math.pow(1-p,3)));
+      if(p<1)requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);cio.unobserve(el);
+  });
+},{threshold:.6});
+document.querySelectorAll('.cnt').forEach(el=>cio.observe(el));
+
+/* ===== marquee duplicate ===== */
+const mq=document.getElementById('mq');
+mq.innerHTML+=mq.innerHTML;
+
+/* ===== theme toggle ===== */
+const themeBtn=document.getElementById('themeBtn');
+const setTheme=d=>{
+  document.documentElement.classList.toggle('dark',d);
+  document.getElementById('moonIco').style.display=d?'none':'block';
+  document.getElementById('sunIco').style.display=d?'block':'none';
+};
+themeBtn.onclick=()=>setTheme(!document.documentElement.classList.contains('dark'));
+
+/* ===== mobile menu ===== */
+const mMenu=document.getElementById('mMenu');
+document.getElementById('burger').onclick=()=>mMenu.classList.add('open');
+document.getElementById('mClose').onclick=()=>mMenu.classList.remove('open');
+mMenu.querySelectorAll('a').forEach(a=>a.onclick=()=>mMenu.classList.remove('open'));
+
+/* ===== scrollspy ===== */
+const links=[...document.querySelectorAll('#navLinks a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+const spy=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>s&&spy.observe(s));
+
+/* ===== service filter ===== */
+document.querySelectorAll('.chip').forEach(ch=>{
+  ch.onclick=()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    ch.classList.add('active');
+    const f=ch.dataset.f;
+    document.querySelectorAll('#svcGrid .svc').forEach(s=>{
+      s.classList.toggle('hide',f!=='all'&&s.dataset.cat!==f);
+    });
+  };
+});
+
+/* ===== dept -> prefill booking ===== */
+document.querySelectorAll('.dept').forEach(d=>{
+  d.onclick=()=>{
+    const sel=document.getElementById('iSvc');
+    const name=d.dataset.svc;
+    [...sel.options].forEach(o=>{if(o.text.includes(name))sel.value=o.value||o.text});
+    if(![...sel.options].some(o=>o.selected&&o.value)){ // fallback
+      [...sel.options].forEach(o=>{if(o.text===name)o.selected=true});
+    }
+    document.getElementById('yozilish').scrollIntoView({behavior:'smooth'});
+    showToast(name+' tanlandi — formani to\'ldiring');
+  };
+});
+
+/* ===== phone mask ===== */
+const ph=document.getElementById('iPhone');
+ph.addEventListener('input',()=>{
+  let d=ph.value.replace(/\D/g,'');
+  if(d.startsWith('998'))d=d.slice(3);
+  d=d.slice(0,9);
+  let out='+998';
+  if(d.length>0)out+=' '+d.slice(0,2);
+  if(d.length>2)out+=' '+d.slice(2,5);
+  if(d.length>5)out+=' '+d.slice(5,7);
+  if(d.length>7)out+=' '+d.slice(7,9);
+  ph.value=d?out:'';
+});
+
+/* ===== date min = today ===== */
+document.getElementById('iDate').min=new Date().toISOString().split('T')[0];
+
+/* ===== booking form ===== */
+const form=document.getElementById('bookForm');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  let ok=true;
+  const name=document.getElementById('iName'),svc=document.getElementById('iSvc');
+  const setV=(id,bad)=>{document.getElementById(id).classList.toggle('invalid',bad);if(bad)ok=false};
+  setV('fName',name.value.trim().length<2);
+  setV('fPhone',ph.value.replace(/\D/g,'').length<12);
+  setV('fSvc',!svc.value);
+  if(!ok)return;
+
+  const date=document.getElementById('iDate').value;
+  const msg=`Assalomu alaykum! Qabulga yozilmoqchiman:%0A👤 ${encodeURIComponent(name.value.trim())}%0A📞 ${encodeURIComponent(ph.value)}%0A🩺 ${encodeURIComponent(svc.value)}${date?'%0A📅 '+date:''}`;
+  document.getElementById('okTg').href='https://t.me/share/url?url=NEO%20MED%20CARDIO&text='+msg;
+  document.getElementById('okMsg').textContent=`Rahmat, ${name.value.trim()}! Operatorimiz ${ph.value} raqamiga tez orada qo'ng'iroq qiladi.`;
+  form.style.display='none';
+  document.getElementById('bookOk').style.display='block';
+  showToast('Ariza muvaffaqiyatli yuborildi ✓');
+});
+document.getElementById('okAgain').onclick=()=>{
+  form.reset();form.style.display='block';
+  document.getElementById('bookOk').style.display='none';
+};
+['fName','fPhone','fSvc'].forEach(id=>{
+  document.getElementById(id).querySelector('input,select')
+    .addEventListener('input',()=>document.getElementById(id).classList.remove('invalid'));
+});
+
+/* ===== testimonials slider ===== */
+const track=document.getElementById('tTrack');
+let tIdx=0;
+const perView=()=>innerWidth>960?2:1;
+const tMax=()=>track.children.length-perView();
+const go=i=>{
+  tIdx=Math.max(0,Math.min(i,tMax()));
+  const w=track.children[0].getBoundingClientRect().width+22;
+  track.style.transform=`translateX(${-tIdx*w}px)`;
+};
+document.getElementById('tNext').onclick=()=>go(tIdx+1);
+document.getElementById('tPrev').onclick=()=>go(tIdx-1);
+setInterval(()=>go(tIdx>=tMax()?0:tIdx+1),6000);
+addEventListener('resize',()=>go(tIdx));
+
+/* ===== FAQ accordion ===== */
+document.querySelectorAll('.q button').forEach(b=>{
+  b.onclick=()=>{
+    const q=b.parentElement,a=q.querySelector('.a'),open=q.classList.contains('open');
+    document.querySelectorAll('.q.open').forEach(o=>{o.classList.remove('open');o.querySelector('.a').style.maxHeight=0});
+    if(!open){q.classList.add('open');a.style.maxHeight=a.scrollHeight+30+'px'}
+  };
+});
+
+/* ===== back to top ===== */
+const toTop=document.getElementById('toTop');
+addEventListener('scroll',()=>toTop.classList.toggle('show',scrollY>700));
+toTop.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+
+/* ===== live clock in topbar ===== */
+const tick=()=>{
+  const t=new Date().toLocaleTimeString('uz-UZ',{hour:'2-digit',minute:'2-digit'});
+  document.getElementById('openNow').textContent=`Hozir ochiq (${t})`;
+};
+tick();setInterval(tick,30000);
+
+/* ===== toast ===== */
+let toastT;
+function showToast(t){
+  const el=document.getElementById('toast');
+  el.textContent=t;el.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),3200);
+}
+</script>
+</body>
+</html>
