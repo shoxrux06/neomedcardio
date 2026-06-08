@@ -182,15 +182,23 @@ section{padding:90px 0}
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .svc{
   background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-  padding:30px 26px;transition:transform .25s,box-shadow .25s,opacity .3s;
+  padding:30px 26px;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .35s;
   position:relative;overflow:hidden;
 }
+.svc::before{
+  content:"";position:absolute;left:0;top:0;height:3px;width:100%;
+  background:linear-gradient(90deg,var(--teal),var(--mint));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
 .svc.hide{display:none}
-.svc:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.svc:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--teal) 35%,var(--line))}
+.svc:hover::before{transform:scaleX(1)}
 .svc .ico{
   width:52px;height:52px;border-radius:14px;display:grid;place-items:center;
   background:linear-gradient(135deg,#eaf5f4,#d8ecea);color:var(--teal);margin-bottom:18px;
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
 }
+.svc:hover .ico{transform:scale(1.08) rotate(-4deg)}
 html.dark .svc .ico{background:rgba(47,214,181,.12);color:var(--mint)}
 .svc h3{font-size:19px;font-weight:600;margin-bottom:8px}
 .svc p{font-size:14.5px;color:var(--ink-soft)}
@@ -1288,28 +1296,14 @@ document.querySelectorAll('.svc-grid,.dept-grid,.why-grid,.faq').forEach(g=>{
     if(c.classList.contains('reveal'))c.style.transitionDelay=((i%3)*0.09)+'s';
   });
 });
-/* xizmat kartalari almashinib chap/o'ngdan kelsin */
-document.querySelectorAll('.svc.reveal').forEach((c,i)=>{
-  c.classList.add(i%2?'r-right':'r-left');
-});
 
-/* 3D tilt va magnit effektlar — faqat kompyuterda */
+/* magnit tugmalar — faqat kompyuterda (kartalarda tilt YO'Q, toza ko'tarilish ishlatiladi) */
 if(fine && !reduce){
-  document.querySelectorAll('.svc,.dept').forEach(card=>{
-    card.classList.add('tilt');
-    card.addEventListener('pointermove',e=>{
-      const r=card.getBoundingClientRect();
-      const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
-      card.style.transform=`perspective(820px) rotateY(${x*6.5}deg) rotateX(${-y*6.5}deg) translateY(-6px)`;
-    });
-    card.addEventListener('pointerleave',()=>card.style.transform='');
-  });
-  /* magnit tugmalar (navigatsiyadan tashqari) */
   document.querySelectorAll('.btn-coral,.btn-white').forEach(b=>{
     if(b.closest('nav'))return;
     b.addEventListener('pointermove',e=>{
       const r=b.getBoundingClientRect();
-      b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*0.2}px,${(e.clientY-r.top-r.height/2)*0.3-2}px)`;
+      b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*0.18}px,${(e.clientY-r.top-r.height/2)*0.28-2}px)`;
     });
     b.addEventListener('pointerleave',()=>b.style.transform='');
   });
