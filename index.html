@@ -403,9 +403,171 @@ footer a:hover{color:#7be0d3}
   .logo small{display:none}
   .logo-mark{width:36px;height:36px}
 }
+
+/* ============ INTERAKTIV PARDOZ (Apple uslubi) ============ */
+
+/* scroll progress chizig'i */
+.progress-bar{
+  position:fixed;top:0;left:0;height:3px;width:0;z-index:300;
+  background:linear-gradient(90deg,var(--teal),var(--mint));
+  box-shadow:0 0 10px rgba(47,214,181,.5);transition:width .08s linear;
+}
+
+/* kuchaytirilgan reveal — blur + yo'nalishli variantlar */
+.reveal{
+  opacity:0;transform:translateY(38px);filter:blur(7px);
+  transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1),filter .85s ease;
+  will-change:opacity,transform,filter;
+}
+.reveal.in{opacity:1;transform:none;filter:blur(0)}
+.reveal.r-left{transform:translateX(-44px)}
+.reveal.r-right{transform:translateX(44px)}
+.reveal.r-scale{transform:scale(.9)}
+
+/* hero — sahifa yuklanganda silliq kirish */
+.hero .eyebrow,.hero h1,.hero p.lead,.hero-cta,.hero-stats{animation:heroIn .9s cubic-bezier(.16,1,.3,1) both}
+.hero .eyebrow{animation-delay:.04s}
+.hero h1{animation-delay:.12s}
+.hero p.lead{animation-delay:.24s}
+.hero-cta{animation-delay:.34s}
+.hero-stats{animation-delay:.44s}
+.hero-card{animation:heroCard 1.05s cubic-bezier(.16,1,.3,1) both;animation-delay:.28s;will-change:transform}
+@keyframes heroIn{from{opacity:0;transform:translateY(30px);filter:blur(6px)}}
+@keyframes heroCard{from{opacity:0;transform:translateY(46px) scale(.95)}}
+
+/* 3D tilt kartalar uchun */
+.tilt{transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;transform-style:preserve-3d;will-change:transform}
+
+/* tugmalarda ripple (bosilganda to'lqin) */
+.btn{position:relative;overflow:hidden}
+.ripple{
+  position:absolute;width:14px;height:14px;border-radius:50%;
+  background:rgba(255,255,255,.55);transform:translate(-50%,-50%) scale(0);
+  animation:rip .65s cubic-bezier(.2,.6,.3,1);pointer-events:none;
+}
+.btn-ghost .ripple,.btn-white .ripple{background:rgba(14,110,107,.22)}
+@keyframes rip{to{transform:translate(-50%,-50%) scale(16);opacity:0}}
+
+/* yumshoq harakatlanuvchi gradient nuqta hero fonida */
+.hero::after{
+  content:"";position:absolute;right:-120px;top:-80px;width:420px;height:420px;
+  background:radial-gradient(circle,rgba(14,110,107,.14),transparent 65%);
+  border-radius:50%;animation:float 14s ease-in-out infinite;pointer-events:none;
+}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,40px) scale(1.12)}}
+
+/* harakatni kamaytirish sozlamasini hurmat qilish (accessibility) */
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.05ms!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1!important;transform:none!important;filter:none!important}
+  .hero::after,.ecg path,.fab-call{animation:none!important}
+}
+
+/* ============ INTRO PRELOADER ============ */
+#preloader{
+  position:fixed;inset:0;z-index:1000;background:var(--bg);
+  display:grid;place-items:center;transition:opacity .6s ease,visibility .6s;
+}
+#preloader.hide{opacity:0;visibility:hidden}
+.pre-inner{display:flex;flex-direction:column;align-items:center;gap:18px}
+.pre-mark{
+  width:74px;height:74px;border-radius:20px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--teal),var(--teal-deep));
+  box-shadow:0 16px 36px -10px rgba(14,110,107,.6);
+  animation:premark .7s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes premark{from{opacity:0;transform:scale(.5) translateY(10px)}}
+.pre-ecg{width:200px;height:50px}
+.pre-ecg path{
+  fill:none;stroke:var(--mint);stroke-width:3;stroke-linecap:round;
+  stroke-dasharray:400;stroke-dashoffset:400;
+  animation:predraw 1.1s .25s ease forwards;
+  filter:drop-shadow(0 0 5px rgba(47,214,181,.7));
+}
+@keyframes predraw{to{stroke-dashoffset:0}}
+.pre-name{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;letter-spacing:.14em;
+  font-size:15px;color:var(--ink);opacity:0;animation:fadeUp .6s .5s both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+
+/* ============ PROGRESS RINGS ============ */
+.ring-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ring{position:relative;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 18px;transition:transform .25s,box-shadow .25s}
+.ring:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.ring svg{width:130px;height:130px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:9;stroke-linecap:round}
+.ring circle.bg{stroke:var(--line)}
+.ring circle.fg{
+  stroke:url(#rgrad);stroke:var(--teal);
+  stroke-dasharray:326.7;stroke-dashoffset:326.7;
+  transition:stroke-dashoffset 1.6s cubic-bezier(.16,1,.3,1);
+}
+html.dark .ring circle.fg{stroke:var(--mint)}
+.ring-c{position:absolute;top:30px;left:0;right:0;height:130px;display:grid;place-items:center}
+.ring-c b{font-family:'Plus Jakarta Sans',sans-serif;font-size:27px;font-weight:700;color:var(--teal-deep)}
+html.dark .ring-c b{color:var(--mint)}
+.ring p{margin-top:14px;font-size:14.5px;font-weight:600;color:var(--ink-soft)}
+
+/* ============ STICKY SCROLL ============ */
+.sticky-sec{padding:90px 0}
+.sticky-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
+.sticky-side{position:sticky;top:120px}
+.sticky-side .tag{color:var(--coral);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
+.sticky-side h2{font-size:clamp(28px,3.4vw,40px);font-weight:700;margin-top:10px;line-height:1.15}
+.sticky-side p{margin-top:14px;color:var(--ink-soft);font-size:16px;max-width:380px}
+.stk-progress{display:flex;gap:10px;margin-top:30px}
+.stk-dot{width:38px;height:5px;border-radius:999px;background:var(--line);transition:background .4s,transform .4s;transform-origin:left}
+.stk-dot.active{background:var(--coral);transform:scaleY(1.6)}
+.stk-count{margin-top:20px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink-soft);font-weight:600}
+.stk-count b{font-size:40px;color:var(--teal-deep)}
+html.dark .stk-count b{color:var(--mint)}
+.sticky-steps{display:flex;flex-direction:column;gap:26px}
+.stk-step{
+  background:var(--card);border:1px solid var(--line);border-radius:22px;padding:38px 34px;
+  transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s,border-color .5s,opacity .5s;
+  opacity:.5;
+}
+.stk-step.active{opacity:1;transform:scale(1.02);box-shadow:var(--shadow);border-color:var(--teal)}
+.stk-n{
+  display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:15px;
+  color:#fff;background:var(--teal);padding:5px 13px;border-radius:999px;margin-bottom:16px;transition:background .5s;
+}
+.stk-step.active .stk-n{background:var(--coral)}
+.stk-step h3{font-size:22px;font-weight:700;margin-bottom:8px}
+.stk-step p{color:var(--ink-soft);font-size:15.5px}
+
+@media(max-width:960px){
+  .ring-grid{grid-template-columns:1fr 1fr}
+  .sticky-grid{grid-template-columns:1fr;gap:34px}
+  .sticky-side{position:static}
+  .stk-progress,.stk-count{display:none}
+}
+@media(max-width:560px){
+  .ring-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .ring{padding:22px 10px}
+  .ring svg{width:108px;height:108px}
+  .ring-c{height:108px;top:22px}
+  .ring-c b{font-size:22px}
+  .stk-step{padding:28px 22px}
+}
 </style>
 </head>
 <body>
+
+<!-- INTRO PRELOADER -->
+<div id="preloader" aria-hidden="true">
+  <div class="pre-inner">
+    <span class="pre-mark">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 5 6.4 5c2 0 3.4 1 4.3 2.4l1.3 2 2-3.4c.9-1.4 2.3-2.4 4.3-2.4 3.3 0 5.4 3.4 4 6.8C19.5 16.4 12 21 12 21z" fill="#fff" opacity=".95"/></svg>
+    </span>
+    <svg class="pre-ecg" viewBox="0 0 240 60" preserveAspectRatio="none">
+      <path d="M0,30 L80,30 L92,30 L100,12 L110,48 L120,6 L130,54 L140,30 L160,30 L240,30"/>
+    </svg>
+    <span class="pre-name">NEO MED CARDIO</span>
+  </div>
+</div>
 
 <!-- TOP BAR -->
 <div class="topbar">
@@ -585,6 +747,39 @@ footer a:hover{color:#7be0d3}
   </div>
 </div>
 
+<!-- RAQAMLAR / PROGRESS RINGS -->
+<section id="raqamlar">
+  <div class="wrap">
+    <div class="sec-head reveal" style="max-width:680px">
+      <span class="tag">Raqamlarda</span>
+      <h2>Bemorlar bizga ishonadi</h2>
+      <p>Ko'rsatkichlarimiz — sifatli xizmat va doimiy mas'uliyatning natijasi.</p>
+    </div>
+    <div class="ring-grid">
+      <div class="ring reveal" data-pct="98">
+        <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" cx="60" cy="60" r="52"/></svg>
+        <div class="ring-c"><b><span class="rnum" data-to="98">0</span>%</b></div>
+        <p>Bemorlar mamnunligi</p>
+      </div>
+      <div class="ring reveal" data-pct="100">
+        <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" cx="60" cy="60" r="52"/></svg>
+        <div class="ring-c"><b>24/7</b></div>
+        <p>Uzluksiz ish rejimi</p>
+      </div>
+      <div class="ring reveal" data-pct="92">
+        <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" cx="60" cy="60" r="52"/></svg>
+        <div class="ring-c"><b>~<span class="rnum" data-to="10">0</span> daq</b></div>
+        <p>O'rtacha qabul kutish vaqti</p>
+      </div>
+      <div class="ring reveal" data-pct="100">
+        <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" cx="60" cy="60" r="52"/></svg>
+        <div class="ring-c"><b><span class="rnum" data-to="15">0</span>+</b></div>
+        <p>Tibbiy yo'nalishlar</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- DEPARTMENTS -->
 <section id="bolimlar">
   <div class="wrap">
@@ -625,6 +820,46 @@ footer a:hover{color:#7be0d3}
       <div class="dept reveal" data-svc="Diagnostika">
         <div class="circ"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.8-3.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
         <h3>Diagnostika</h3><p>To'liq tibbiy tekshiruv dasturlari</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STICKY SCROLL — JARAYON -->
+<section class="sticky-sec">
+  <div class="wrap sticky-grid">
+    <div class="sticky-side">
+      <span class="tag">Qanday ishlaymiz</span>
+      <h2>Murojaatdan sog'ayishgacha — 4 qadam</h2>
+      <p>Har bir bosqichda yoningizdamiz. Pastga aylantiring va jarayon bilan tanishing.</p>
+      <div class="stk-progress">
+        <span class="stk-dot active" data-i="0"></span>
+        <span class="stk-dot" data-i="1"></span>
+        <span class="stk-dot" data-i="2"></span>
+        <span class="stk-dot" data-i="3"></span>
+      </div>
+      <div class="stk-count"><b id="stkNum">01</b> / 04</div>
+    </div>
+    <div class="sticky-steps">
+      <div class="stk-step reveal" data-i="0">
+        <span class="stk-n">01</span>
+        <h3>Murojaat va yozilish</h3>
+        <p>Telefon yoki onlayn forma orqali bog'lanasiz. Operator qulay vaqtni kelishadi — yoki shoshilinch holatda darhol qabul qilamiz, navbatsiz.</p>
+      </div>
+      <div class="stk-step reveal" data-i="1">
+        <span class="stk-n">02</span>
+        <h3>Ko'rik va diagnostika</h3>
+        <p>Shifokor ko'rigidan o'tasiz. Zarur bo'lsa MRT, MSKT, EKG, rentgen yoki laboratoriya tahlillari — barchasi shu yerning o'zida, tez.</p>
+      </div>
+      <div class="stk-step reveal" data-i="2">
+        <span class="stk-n">03</span>
+        <h3>Aniq tashxis va reja</h3>
+        <p>Natijalar asosida mutaxassis aniq tashxis qo'yadi va sizga tushunarli davolash rejasini tuzib beradi.</p>
+      </div>
+      <div class="stk-step reveal" data-i="3">
+        <span class="stk-n">04</span>
+        <h3>Davolash va kuzatuv</h3>
+        <p>Ambulator yoki statsionar davolash. Sog'ayganingizdan keyin ham nazoratda bo'lasiz — sog'lig'ingiz biz uchun muhim.</p>
       </div>
     </div>
   </div>
@@ -1032,6 +1267,131 @@ function showToast(t){
   const el=document.getElementById('toast');
   el.textContent=t;el.classList.add('show');
   clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),3200);
+}
+
+/* ============ INTERAKTIV PARDOZ ============ */
+const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* scroll progress chizig'i */
+const pb=document.createElement('div');pb.className='progress-bar';document.body.appendChild(pb);
+const onScrollPb=()=>{
+  const d=document.documentElement;
+  const p=d.scrollTop/((d.scrollHeight-d.clientHeight)||1);
+  pb.style.width=(p*100)+'%';
+};
+addEventListener('scroll',onScrollPb,{passive:true});onScrollPb();
+
+/* gridlar ichida bosqichma-bosqich (stagger) kechikish */
+document.querySelectorAll('.svc-grid,.dept-grid,.why-grid,.faq').forEach(g=>{
+  [...g.children].forEach((c,i)=>{
+    if(c.classList.contains('reveal'))c.style.transitionDelay=((i%3)*0.09)+'s';
+  });
+});
+/* xizmat kartalari almashinib chap/o'ngdan kelsin */
+document.querySelectorAll('.svc.reveal').forEach((c,i)=>{
+  c.classList.add(i%2?'r-right':'r-left');
+});
+
+/* 3D tilt va magnit effektlar — faqat kompyuterda */
+if(fine && !reduce){
+  document.querySelectorAll('.svc,.dept').forEach(card=>{
+    card.classList.add('tilt');
+    card.addEventListener('pointermove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(820px) rotateY(${x*6.5}deg) rotateX(${-y*6.5}deg) translateY(-6px)`;
+    });
+    card.addEventListener('pointerleave',()=>card.style.transform='');
+  });
+  /* magnit tugmalar (navigatsiyadan tashqari) */
+  document.querySelectorAll('.btn-coral,.btn-white').forEach(b=>{
+    if(b.closest('nav'))return;
+    b.addEventListener('pointermove',e=>{
+      const r=b.getBoundingClientRect();
+      b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*0.2}px,${(e.clientY-r.top-r.height/2)*0.3-2}px)`;
+    });
+    b.addEventListener('pointerleave',()=>b.style.transform='');
+  });
+}
+
+/* tugmalarda ripple to'lqini */
+document.querySelectorAll('.btn').forEach(b=>{
+  b.addEventListener('pointerdown',e=>{
+    const r=b.getBoundingClientRect();
+    const s=document.createElement('span');s.className='ripple';
+    s.style.left=(e.clientX-r.left)+'px';s.style.top=(e.clientY-r.top)+'px';
+    b.appendChild(s);setTimeout(()=>s.remove(),650);
+  });
+});
+
+/* hero kartasida yumshoq parallaks */
+const heroCard=document.querySelector('.hero-card');
+if(heroCard && !reduce){
+  let ticking=false;
+  addEventListener('scroll',()=>{
+    if(ticking)return;ticking=true;
+    requestAnimationFrame(()=>{
+      const y=scrollY;
+      if(y<900)heroCard.style.transform=`translateY(${y*0.05}px)`;
+      ticking=false;
+    });
+  },{passive:true});
+}
+
+/* ===== INTRO PRELOADER ===== */
+(function(){
+  const pre=document.getElementById('preloader');
+  if(!pre)return;
+  let seen=false;
+  try{seen=sessionStorage.getItem('nmc_seen')==='1'}catch(e){}
+  const hide=()=>{
+    pre.classList.add('hide');
+    try{sessionStorage.setItem('nmc_seen','1')}catch(e){}
+    setTimeout(()=>pre.remove(),700);
+  };
+  if(seen||reduce){pre.classList.add('hide');setTimeout(()=>pre.remove(),50);}
+  else{addEventListener('load',()=>setTimeout(hide,1500));setTimeout(hide,2600);}
+})();
+
+/* ===== PROGRESS HALQALAR ===== */
+const C=2*Math.PI*52; // 326.7
+const ringIo=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const ring=e.target, pct=+ring.dataset.pct;
+    const fg=ring.querySelector('circle.fg');
+    requestAnimationFrame(()=>{fg.style.strokeDashoffset=C*(1-pct/100)});
+    const nEl=ring.querySelector('.rnum');
+    if(nEl){
+      const to=+nEl.dataset.to,t0=performance.now();
+      const step=t=>{const p=Math.min((t-t0)/1500,1);nEl.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)};
+      requestAnimationFrame(step);
+    }
+    ringIo.unobserve(ring);
+  });
+},{threshold:.45});
+document.querySelectorAll('.ring').forEach(r=>{
+  r.querySelector('circle.fg').style.strokeDasharray=C;
+  ringIo.observe(r);
+});
+
+/* ===== STICKY SCROLL QADAMLAR ===== */
+const stkSteps=[...document.querySelectorAll('.stk-step')];
+const stkDots=[...document.querySelectorAll('.stk-dot')];
+const stkNum=document.getElementById('stkNum');
+if(stkSteps.length){
+  const stkIo=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const i=+e.target.dataset.i;
+      stkSteps.forEach(s=>s.classList.toggle('active',s===e.target));
+      stkDots.forEach(d=>d.classList.toggle('active',+d.dataset.i<=i));
+      if(stkNum)stkNum.textContent='0'+(i+1);
+    });
+  },{rootMargin:'-45% 0px -45% 0px'});
+  stkSteps.forEach(s=>stkIo.observe(s));
+  stkSteps[0].classList.add('active');
 }
 </script>
 </body>
